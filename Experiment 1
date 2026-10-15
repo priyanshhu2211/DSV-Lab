@@ -1,0 +1,262 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/priyanshhu2211/DSV-Lab/blob/main/Experiment%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "df = pd.read_csv(\"1- mental-illnesses-prevalence.csv\")"
+      ],
+      "metadata": {
+        "id": "UpwuYYCPnPoC"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"---Dataset Head ---\")\n",
+        "print(df.head())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "L6tk7pavpjAz",
+        "outputId": "0274d1a7-cd24-4711-8a13-d90c131a5c98"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "---Dataset Head ---\n",
+            "        Entity Code  Year  \\\n",
+            "0  Afghanistan  AFG  1990   \n",
+            "1  Afghanistan  AFG  1991   \n",
+            "2  Afghanistan  AFG  1992   \n",
+            "3  Afghanistan  AFG  1993   \n",
+            "4  Afghanistan  AFG  1994   \n",
+            "\n",
+            "   Schizophrenia disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "0                                           0.223206                                   \n",
+            "1                                           0.222454                                   \n",
+            "2                                           0.221751                                   \n",
+            "3                                           0.220987                                   \n",
+            "4                                           0.220183                                   \n",
+            "\n",
+            "   Depressive disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "0                                           4.996118                                \n",
+            "1                                           4.989290                                \n",
+            "2                                           4.981346                                \n",
+            "3                                           4.976958                                \n",
+            "4                                           4.977782                                \n",
+            "\n",
+            "   Anxiety disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "0                                           4.713314                             \n",
+            "1                                           4.702100                             \n",
+            "2                                           4.683743                             \n",
+            "3                                           4.673549                             \n",
+            "4                                           4.670810                             \n",
+            "\n",
+            "   Bipolar disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "0                                           0.703023                             \n",
+            "1                                           0.702069                             \n",
+            "2                                           0.700792                             \n",
+            "3                                           0.700087                             \n",
+            "4                                           0.699898                             \n",
+            "\n",
+            "   Eating disorders (share of population) - Sex: Both - Age: Age-standardized  \n",
+            "0                                           0.127700                           \n",
+            "1                                           0.123256                           \n",
+            "2                                           0.118844                           \n",
+            "3                                           0.115089                           \n",
+            "4                                           0.111815                           \n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"---Dataset info ---\")\n",
+        "print(df.info())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WLHpXCFRqB_G",
+        "outputId": "3c702674-ed50-43e0-f26b-82a4d5b27005"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "---Dataset info ---\n",
+            "<class 'pandas.core.frame.DataFrame'>\n",
+            "RangeIndex: 6420 entries, 0 to 6419\n",
+            "Data columns (total 8 columns):\n",
+            " #   Column                                                                             Non-Null Count  Dtype  \n",
+            "---  ------                                                                             --------------  -----  \n",
+            " 0   Entity                                                                             6420 non-null   object \n",
+            " 1   Code                                                                               6150 non-null   object \n",
+            " 2   Year                                                                               6420 non-null   int64  \n",
+            " 3   Schizophrenia disorders (share of population) - Sex: Both - Age: Age-standardized  6420 non-null   float64\n",
+            " 4   Depressive disorders (share of population) - Sex: Both - Age: Age-standardized     6420 non-null   float64\n",
+            " 5   Anxiety disorders (share of population) - Sex: Both - Age: Age-standardized        6420 non-null   float64\n",
+            " 6   Bipolar disorders (share of population) - Sex: Both - Age: Age-standardized        6420 non-null   float64\n",
+            " 7   Eating disorders (share of population) - Sex: Both - Age: Age-standardized         6420 non-null   float64\n",
+            "dtypes: float64(5), int64(1), object(2)\n",
+            "memory usage: 401.4+ KB\n",
+            "None\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"---Summary Statistics---\")\n",
+        "print(df.describe())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-HZUZLJ5qSS4",
+        "outputId": "6a15265e-3284-483f-a648-5ccd394d9713"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "---Summary Statistics---\n",
+            "              Year  \\\n",
+            "count  6420.000000   \n",
+            "mean   2004.500000   \n",
+            "std       8.656116   \n",
+            "min    1990.000000   \n",
+            "25%    1997.000000   \n",
+            "50%    2004.500000   \n",
+            "75%    2012.000000   \n",
+            "max    2019.000000   \n",
+            "\n",
+            "       Schizophrenia disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "count                                        6420.000000                                   \n",
+            "mean                                            0.266604                                   \n",
+            "std                                             0.039383                                   \n",
+            "min                                             0.188416                                   \n",
+            "25%                                             0.242267                                   \n",
+            "50%                                             0.273477                                   \n",
+            "75%                                             0.286575                                   \n",
+            "max                                             0.462045                                   \n",
+            "\n",
+            "       Depressive disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "count                                        6420.000000                                \n",
+            "mean                                            3.767036                                \n",
+            "std                                             0.925286                                \n",
+            "min                                             1.522333                                \n",
+            "25%                                             3.080036                                \n",
+            "50%                                             3.636772                                \n",
+            "75%                                             4.366252                                \n",
+            "max                                             7.645899                                \n",
+            "\n",
+            "       Anxiety disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "count                                        6420.000000                             \n",
+            "mean                                            4.101840                             \n",
+            "std                                             1.050543                             \n",
+            "min                                             1.879996                             \n",
+            "25%                                             3.425846                             \n",
+            "50%                                             3.939547                             \n",
+            "75%                                             4.564164                             \n",
+            "max                                             8.624634                             \n",
+            "\n",
+            "       Bipolar disorders (share of population) - Sex: Both - Age: Age-standardized  \\\n",
+            "count                                        6420.000000                             \n",
+            "mean                                            0.636968                             \n",
+            "std                                             0.233391                             \n",
+            "min                                             0.181667                             \n",
+            "25%                                             0.520872                             \n",
+            "50%                                             0.579331                             \n",
+            "75%                                             0.844406                             \n",
+            "max                                             1.506730                             \n",
+            "\n",
+            "       Eating disorders (share of population) - Sex: Both - Age: Age-standardized  \n",
+            "count                                        6420.000000                           \n",
+            "mean                                            0.195664                           \n",
+            "std                                             0.138380                           \n",
+            "min                                             0.044780                           \n",
+            "25%                                             0.096416                           \n",
+            "50%                                             0.144150                           \n",
+            "75%                                             0.251167                           \n",
+            "max                                             1.031688                           \n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"---Missing values Count ---\")\n",
+        "print(df.isnull().sum())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HrixeJe4qeqC",
+        "outputId": "3aae725b-08bd-461c-e777-c15df11798f2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "---Missing values Count ---\n",
+            "Entity                                                                                 0\n",
+            "Code                                                                                 270\n",
+            "Year                                                                                   0\n",
+            "Schizophrenia disorders (share of population) - Sex: Both - Age: Age-standardized      0\n",
+            "Depressive disorders (share of population) - Sex: Both - Age: Age-standardized         0\n",
+            "Anxiety disorders (share of population) - Sex: Both - Age: Age-standardized            0\n",
+            "Bipolar disorders (share of population) - Sex: Both - Age: Age-standardized            0\n",
+            "Eating disorders (share of population) - Sex: Both - Age: Age-standardized             0\n",
+            "dtype: int64\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
